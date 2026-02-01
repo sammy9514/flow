@@ -1,0 +1,94 @@
+.homeContainer[b-k64tahcf36] {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 60px;
+  /* background-color: blue; */
+}
+
+.body[b-k64tahcf36] {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* header styling */
+
+header[b-k64tahcf36] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo[b-k64tahcf36] {
+  display: flex;
+  flex-direction: column;
+  line-height: 30px;
+}
+
+.logo > p[b-k64tahcf36] {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+span[b-k64tahcf36] {
+  font-size: 12px;
+  padding-left: 25px;
+}
+
+.quotes[b-k64tahcf36] {
+  width: 30%;
+  font-size: 20px;
+  text-align: right;
+}
+
+/* body */
+
+.motivationText[b-k64tahcf36] {
+  font-size: 40px;
+}
+
+.displayTime[b-k64tahcf36] {
+  font-size: 170px;
+}
+
+/* footer */
+
+footer[b-k64tahcf36] {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left[b-k64tahcf36],
+.right[b-k64tahcf36] {
+  display: flex;
+  gap: 15px;
+}
+
+.modeHold[b-k64tahcf36] {
+  display: flex;
+  border-radius: 50px;
+  gap: 5px;
+  background-color: #2e2446;
+  border: white 2px solid;
+  position: relative;
+}
+
+.mode[b-k64tahcf36] {
+  /* display: flex;
+  justify-content: end;
+  padding-right: 90px; */
+  position: absolute;
+  top: 35px;
+  right: 30px;
+}
+
+.musicHold[b-k64tahcf36] {
+  position: relative;
+}
+.noteHold[b-k64tahcf36] {
+  position: relative;
+}

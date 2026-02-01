@@ -1,0 +1,40 @@
+﻿<div class="body">
+  <div class="navHold">
+    <nav @onclick="()=>SwitchNav(ActiveNav.Sounds)" style="color:@(active == ActiveNav.Sounds ? "white" : "grey")">Sounds</nav>
+    <nav @onclick="()=>SwitchNav(ActiveNav.MyMusic)" style="color:@(active == ActiveNav.MyMusic ? "white" : "grey")">My Music</nav>
+    <nav></nav>
+  </div>
+  <hr>
+
+@if(active == ActiveNav.Sounds){
+<div class="sounds">
+  @foreach(var i in new[] {1,2,3,4,5,6}) {
+     <div class="soundTile">
+    <div class="image">🔥</div>
+    <div class="title">Fire</div>
+  </div>
+  }
+</div>
+}
+else {
+<div class="myMusic">
+  <div class="spotifyCard">fdfsd</div>
+</div>
+}
+</div>
+
+
+@code {
+
+private ActiveNav active = ActiveNav.Sounds;
+
+private void SwitchNav(ActiveNav nav) {
+  active = nav;
+}
+
+@* private string NavStyle *@
+
+enum ActiveNav {
+  Sounds,MyMusic
+}
+}

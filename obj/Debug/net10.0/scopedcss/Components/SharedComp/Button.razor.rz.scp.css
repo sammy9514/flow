@@ -1,0 +1,26 @@
+button[b-ioruyqumi9] {
+  background-color: #2e2446;
+  border-radius: 10px;
+  border: none;
+}
+
+button:hover[b-ioruyqumi9] {
+  background-color: #9d3bff;
+}
+
+.customBtn[b-ioruyqumi9] {
+  border-radius: 50%;
+}
+.customBtn:hover[b-ioruyqumi9] {
+  background-color: transparent;
+}
+
+.active-btn[b-ioruyqumi9] {
+  background-color: #9d3bff;
+}
+.btn:focus[b-ioruyqumi9],
+.btn:active[b-ioruyqumi9] {
+  background-color: #9d3bff;
+  outline: none !important;
+  box-shadow: none !important;
+}

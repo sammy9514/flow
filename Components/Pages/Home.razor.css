@@ -1,0 +1,94 @@
+.homeContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 60px;
+  /* background-color: blue; */
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* header styling */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 30px;
+}
+
+.logo > p {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+span {
+  font-size: 12px;
+  padding-left: 25px;
+}
+
+.quotes {
+  width: 30%;
+  font-size: 20px;
+  text-align: right;
+}
+
+/* body */
+
+.motivationText {
+  font-size: 40px;
+}
+
+.displayTime {
+  font-size: 170px;
+}
+
+/* footer */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left,
+.right {
+  display: flex;
+  gap: 15px;
+}
+
+.modeHold {
+  display: flex;
+  border-radius: 50px;
+  gap: 5px;
+  background-color: #2e2446;
+  border: white 2px solid;
+  position: relative;
+}
+
+.mode {
+  /* display: flex;
+  justify-content: end;
+  padding-right: 90px; */
+  position: absolute;
+  top: 35px;
+  right: 30px;
+}
+
+.musicHold {
+  position: relative;
+}
+.noteHold {
+  position: relative;
+}

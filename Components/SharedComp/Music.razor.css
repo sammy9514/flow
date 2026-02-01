@@ -1,0 +1,33 @@
+.body {
+  width: 900px;
+  height: 600px;
+  background-color: #2e2446eb;
+  border-radius: 20px;
+  color: white;
+  padding: 35px;
+  position: absolute;
+  bottom: 40px;
+}
+
+.navHold {
+  display: flex;
+  gap: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sounds {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.soundTile {
+  padding: 25px 42px;
+  border: 2px solid white;
+}
+
+.image {
+  font-size: 35px;
+}

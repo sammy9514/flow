@@ -1,0 +1,108 @@
+﻿@page "/"
+@using Flow.Components.SharedComp
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+<PageTitle>Home</PageTitle>
+
+<div class="homeContainer" @onclick="@CloseAll">
+  <header>
+    <div class="logo">
+        <p>flow</p>
+        <span>by Ayomide</span>
+    </div>
+    <div class="quotes">"Be the best version of yourself sdfjsfgfksdgmknsdj "</div>
+    </header>
+
+  @if(activeMode == Modes.Ambient) {
+    <Ambient/>
+  }
+  
+  else if(activeMode == Modes.Home) {
+    <div class="body">
+    <p class="motivationText ">You can do it.</p>
+    <div class="displayTime">@CurrentTime</div>
+  </div>
+  }
+
+  else {
+    <Focus/>
+  }
+
+
+<footer>
+  <div class="left">
+    <div class="musicHold"  @onclick:stopPropagation>
+      <Button Name="S" ButtonStyle="btn btn-primary" OnClick="ToggleMusicModal"/>
+      <div style="display: @(ShowMusicModal ? "block" : "none")">
+        <Music/>
+      </div>
+      
+    </div>
+    <div class="noteHold"  @onclick:stopPropagation>
+      <Button Name="N" ButtonStyle="btn btn-primary" OnClick="ToggleNotesModal"/>
+        <div style="display: @(ShowNotesModal ? "block" : "none")" >
+        <Music/>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="modeHold">
+      @foreach (var mode in Enum.GetValues<Modes>()) {
+      <Button Name="N" ButtonStyle="@GetButtonStyles(mode)" OnClick="()=> ChangeMode(mode)" />
+      }
+
+  <p class="mode">@activeMode</p>
+    </div>
+    <div class="settings">
+      <Button Name="N" ButtonStyle="btn btn-primary"/>
+    </div>
+  </div>
+</footer>
+</div>
+
+@code  {
+    public string? CurrentTime {get; set;} = DateTime.Now.ToString("hh:mm:ss");
+
+@* display currenttime *@
+    protected override void OnInitialized()
+    {
+        var timer = new System.Threading.Timer(_ => { 
+          CurrentTime = DateTime.Now.ToString("hh:mm:ss");
+          InvokeAsync(StateHasChanged);
+        },null,0,1000);
+    }
+
+  private Modes activeMode = Modes.Home;
+
+  private string GetButtonStyles(Modes modes) {
+    return modes == activeMode ? "btn btn-primary customBtn active-btn" 
+      : "btn btn-primary customBtn";
+  }
+
+  private void ChangeMode(Modes modes) {
+    activeMode = modes;    
+  }
+
+  private bool ShowMusicModal = false;
+  private bool ShowNotesModal = false;
+  
+  private void ToggleMusicModal() {
+    ShowMusicModal = !ShowMusicModal;
+    ShowNotesModal = false;
+  }
+  private void ToggleNotesModal() {
+    ShowNotesModal = !ShowNotesModal;
+    ShowMusicModal = false;
+  }
+
+  private void CloseAll() {
+    ShowMusicModal = false;
+    ShowNotesModal = false;
+  }
+
+    enum Modes {
+      Ambient,
+      Home,
+      Focus
+    }
+}

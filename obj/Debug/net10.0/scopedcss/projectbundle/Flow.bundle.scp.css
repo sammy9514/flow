@@ -1,0 +1,316 @@
+/* /Components/Layout/MainLayout.razor.rz.scp.css */
+
+/* /Components/Layout/ReconnectModal.razor.rz.scp.css */
+.components-reconnect-first-attempt-visible[b-i0k8rei5ve],
+.components-reconnect-repeated-attempt-visible[b-i0k8rei5ve],
+.components-reconnect-failed-visible[b-i0k8rei5ve],
+.components-pause-visible[b-i0k8rei5ve],
+.components-resume-failed-visible[b-i0k8rei5ve],
+.components-rejoining-animation[b-i0k8rei5ve] {
+    display: none;
+}
+
+#components-reconnect-modal.components-reconnect-show .components-reconnect-first-attempt-visible[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-show .components-rejoining-animation[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-paused .components-pause-visible[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-resume-failed .components-resume-failed-visible[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-retrying[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-retrying .components-reconnect-repeated-attempt-visible[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-retrying .components-rejoining-animation[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-failed[b-i0k8rei5ve],
+#components-reconnect-modal.components-reconnect-failed .components-reconnect-failed-visible[b-i0k8rei5ve] {
+    display: block;
+}
+
+
+#components-reconnect-modal[b-i0k8rei5ve] {
+    background-color: white;
+    width: 20rem;
+    margin: 20vh auto;
+    padding: 2rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: display 0.5s allow-discrete, overlay 0.5s allow-discrete;
+    animation: components-reconnect-modal-fadeOutOpacity-b-i0k8rei5ve 0.5s both;
+    &[open]
+
+{
+    animation: components-reconnect-modal-slideUp-b-i0k8rei5ve 1.5s cubic-bezier(.05, .89, .25, 1.02) 0.3s, components-reconnect-modal-fadeInOpacity-b-i0k8rei5ve 0.5s ease-in-out 0.3s;
+    animation-fill-mode: both;
+}
+
+}
+
+#components-reconnect-modal[b-i0k8rei5ve]::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    animation: components-reconnect-modal-fadeInOpacity-b-i0k8rei5ve 0.5s ease-in-out;
+    opacity: 1;
+}
+
+@keyframes components-reconnect-modal-slideUp-b-i0k8rei5ve {
+    0% {
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes components-reconnect-modal-fadeInOpacity-b-i0k8rei5ve {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes components-reconnect-modal-fadeOutOpacity-b-i0k8rei5ve {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.components-reconnect-container[b-i0k8rei5ve] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#components-reconnect-modal p[b-i0k8rei5ve] {
+    margin: 0;
+    text-align: center;
+}
+
+#components-reconnect-modal button[b-i0k8rei5ve] {
+    border: 0;
+    background-color: #6b9ed2;
+    color: white;
+    padding: 4px 24px;
+    border-radius: 4px;
+}
+
+    #components-reconnect-modal button:hover[b-i0k8rei5ve] {
+        background-color: #3b6ea2;
+    }
+
+    #components-reconnect-modal button:active[b-i0k8rei5ve] {
+        background-color: #6b9ed2;
+    }
+
+.components-rejoining-animation[b-i0k8rei5ve] {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+    .components-rejoining-animation div[b-i0k8rei5ve] {
+        position: absolute;
+        border: 3px solid #0087ff;
+        opacity: 1;
+        border-radius: 50%;
+        animation: components-rejoining-animation-b-i0k8rei5ve 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+        .components-rejoining-animation div:nth-child(2)[b-i0k8rei5ve] {
+            animation-delay: -0.5s;
+        }
+
+@keyframes components-rejoining-animation-b-i0k8rei5ve {
+    0% {
+        top: 40px;
+        left: 40px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    4.9% {
+        top: 40px;
+        left: 40px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    5% {
+        top: 40px;
+        left: 40px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+    }
+}
+/* /Components/Pages/Home.razor.rz.scp.css */
+.homeContainer[b-k64tahcf36] {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 60px;
+  /* background-color: blue; */
+}
+
+.body[b-k64tahcf36] {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* header styling */
+
+header[b-k64tahcf36] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo[b-k64tahcf36] {
+  display: flex;
+  flex-direction: column;
+  line-height: 30px;
+}
+
+.logo > p[b-k64tahcf36] {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+span[b-k64tahcf36] {
+  font-size: 12px;
+  padding-left: 25px;
+}
+
+.quotes[b-k64tahcf36] {
+  width: 30%;
+  font-size: 20px;
+  text-align: right;
+}
+
+/* body */
+
+.motivationText[b-k64tahcf36] {
+  font-size: 40px;
+}
+
+.displayTime[b-k64tahcf36] {
+  font-size: 170px;
+}
+
+/* footer */
+
+footer[b-k64tahcf36] {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left[b-k64tahcf36],
+.right[b-k64tahcf36] {
+  display: flex;
+  gap: 15px;
+}
+
+.modeHold[b-k64tahcf36] {
+  display: flex;
+  border-radius: 50px;
+  gap: 5px;
+  background-color: #2e2446;
+  border: white 2px solid;
+  position: relative;
+}
+
+.mode[b-k64tahcf36] {
+  /* display: flex;
+  justify-content: end;
+  padding-right: 90px; */
+  position: absolute;
+  top: 35px;
+  right: 30px;
+}
+
+.musicHold[b-k64tahcf36] {
+  position: relative;
+}
+.noteHold[b-k64tahcf36] {
+  position: relative;
+}
+/* /Components/SharedComp/Button.razor.rz.scp.css */
+button[b-ioruyqumi9] {
+  background-color: #2e2446;
+  border-radius: 10px;
+  border: none;
+}
+
+button:hover[b-ioruyqumi9] {
+  background-color: #9d3bff;
+}
+
+.customBtn[b-ioruyqumi9] {
+  border-radius: 50%;
+}
+.customBtn:hover[b-ioruyqumi9] {
+  background-color: transparent;
+}
+
+.active-btn[b-ioruyqumi9] {
+  background-color: #9d3bff;
+}
+.btn:focus[b-ioruyqumi9],
+.btn:active[b-ioruyqumi9] {
+  background-color: #9d3bff;
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* /Components/SharedComp/Music.razor.rz.scp.css */
+.body[b-zb34nduia2] {
+  width: 900px;
+  height: 600px;
+  background-color: #2e2446eb;
+  border-radius: 20px;
+  color: white;
+  padding: 35px;
+  position: absolute;
+  bottom: 40px;
+}
+
+.navHold[b-zb34nduia2] {
+  display: flex;
+  gap: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sounds[b-zb34nduia2] {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.soundTile[b-zb34nduia2] {
+  padding: 25px 42px;
+  border: 2px solid white;
+}
+
+.image[b-zb34nduia2] {
+  font-size: 35px;
+}

@@ -1,0 +1,26 @@
+button {
+  background-color: #2e2446;
+  border-radius: 10px;
+  border: none;
+}
+
+button:hover {
+  background-color: #9d3bff;
+}
+
+.customBtn {
+  border-radius: 50%;
+}
+.customBtn:hover {
+  background-color: transparent;
+}
+
+.active-btn {
+  background-color: #9d3bff;
+}
+.btn:focus,
+.btn:active {
+  background-color: #9d3bff;
+  outline: none !important;
+  box-shadow: none !important;
+}

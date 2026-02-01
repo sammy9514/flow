@@ -1,0 +1,19 @@
+﻿@* <div> *@
+<button class="@ButtonStyle" @onclick="OnClick">
+  @Name
+</button>
+@* </div> *@
+
+@code {
+
+[Parameter]
+
+public string Name {get; set;} = "";
+
+[Parameter]
+public string ButtonStyle {get; set;} = "";
+
+[Parameter]
+public EventCallback OnClick {get; set;}
+
+}
