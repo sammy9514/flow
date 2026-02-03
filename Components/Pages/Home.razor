@@ -10,7 +10,9 @@
         <p>flow</p>
         <span>by Ayomide</span>
     </div>
-    <div class="quotes">"Be the best version of yourself sdfjsfgfksdgmknsdj "</div>
+    <div class="quotes">
+      <Quotes/>
+    </div>
     </header>
 
   @if(activeMode == Modes.Ambient) {
@@ -64,13 +66,18 @@
     public string? CurrentTime {get; set;} = DateTime.Now.ToString("hh:mm:ss");
 
 @* display currenttime *@
+    private Timer? timer;
     protected override void OnInitialized()
     {
-        var timer = new System.Threading.Timer(_ => { 
+       timer = new System.Threading.Timer(_ => { 
           CurrentTime = DateTime.Now.ToString("hh:mm:ss");
           InvokeAsync(StateHasChanged);
         },null,0,1000);
+
     }
+      public void Dispose() {
+        timer?.Dispose();
+      }
 
   private Modes activeMode = Modes.Home;
 

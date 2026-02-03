@@ -1,0 +1,29 @@
+﻿@using System.Text.Json
+<p>@currentQuote</p>
+
+@code {
+
+  private List<Quote> quotes = new ();
+  private  string currentQuote = ""; 
+  private int currentIndex = 0;
+
+protected override async Task OnInitializedAsync() {
+  var json = await File.ReadAllTextAsync("wwwroot/data/quotes.json");
+  quotes = JsonSerializer.Deserialize<List<Quote>>(json) ?? new();
+
+  var timer = new System.Threading.Timer(_=> {
+  if(quotes.Count > 0) {
+    currentIndex = (currentIndex +1) %quotes.Count;
+    currentQuote = quotes[currentIndex].quote;
+  InvokeAsync(StateHasChanged);
+  }
+
+  },null ,0,5000);
+
+}
+
+  public class Quote {
+    public int id {get; set;}
+    public string quote {get; set;} = "";
+  }
+}

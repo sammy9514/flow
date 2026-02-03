@@ -6,7 +6,7 @@
   color: white;
   padding: 35px;
   position: absolute;
-  bottom: 40px;
+  bottom: 50px;
 }
 
 .navHold {
@@ -14,6 +14,10 @@
   gap: 20px;
   font-size: 24px;
   font-weight: 700;
+}
+
+nav {
+  cursor: pointer;
 }
 
 .sounds {
@@ -25,7 +29,7 @@
 
 .soundTile {
   padding: 25px 42px;
-  border: 2px solid white;
+  /* border: 2px solid white; */
 }
 
 .image {
