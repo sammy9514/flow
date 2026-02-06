@@ -55,8 +55,10 @@
 
   <p class="mode">@activeMode</p>
     </div>
-    <div class="settings">
-      <Button Name="N" ButtonStyle="btn btn-primary"/>
+    <div class="settings" @onclick:stopPropagation>
+      <Button Name="N" ButtonStyle="btn btn-primary" OnClick="ToggleSettingsModal"/>
+        <div style="display: @(ShowSettingsModal ? "block" : "none")" >
+      </div>
     </div>
   </div>
 </footer>
@@ -92,19 +94,28 @@
 
   private bool ShowMusicModal = false;
   private bool ShowNotesModal = false;
+  private bool ShowSettingsModal = false;
   
   private void ToggleMusicModal() {
     ShowMusicModal = !ShowMusicModal;
     ShowNotesModal = false;
+    ShowSettingsModal= false;
   }
   private void ToggleNotesModal() {
     ShowNotesModal = !ShowNotesModal;
     ShowMusicModal = false;
+    ShowSettingsModal= false;
+  }
+  private void ToggleSettingsModal() {
+    ShowSettingsModal = !ShowSettingsModal;
+    ShowMusicModal = false;
+    ShowNotesModal = false;
   }
 
   private void CloseAll() {
     ShowMusicModal = false;
     ShowNotesModal = false;
+    ShowSettingsModal= false;
   }
 
     enum Modes {

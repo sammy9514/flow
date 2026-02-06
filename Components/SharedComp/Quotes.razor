@@ -1,4 +1,5 @@
 ﻿@using System.Text.Json
+@inject HttpClient Http
 <p>@currentQuote</p>
 
 @code {
@@ -7,19 +8,31 @@
   private  string currentQuote = ""; 
   private int currentIndex = 0;
 
-protected override async Task OnInitializedAsync() {
-  var json = await File.ReadAllTextAsync("wwwroot/data/quotes.json");
-  quotes = JsonSerializer.Deserialize<List<Quote>>(json) ?? new();
+  @* public async Task JsonQuotes() {
+    var json = await File.ReadAllTextAsync("wwwroot/data/quotes.json");
+    quotes = JsonSerializer.Deserialize<List<Quote>>(json) ?? new();
+  } *@
 
-  var timer = new System.Threading.Timer(_=> {
-  if(quotes.Count > 0) {
-    currentIndex = (currentIndex +1) %quotes.Count;
-    currentQuote = quotes[currentIndex].quote;
-  InvokeAsync(StateHasChanged);
+
+
+  protected override async Task OnInitializedAsync(){
+    var data = await Http.GetFromJsonAsync<QuotesRes>("https://dummyjson.com/quotes");
+    quotes = data?.quotes ?? new();
+
+    var timer = new System.Threading.Timer(_ => {
+
+    if(quotes.Count > 0) {
+    currentIndex = (currentIndex +1) % quotes.Count;
+    currentQuote = quotes[currentIndex].quote; 
+    InvokeAsync(StateHasChanged);
+
+    }
+    },null,0,10000);
+
   }
 
-  },null ,0,5000);
-
+public class QuotesRes {
+  public List<Quote> quotes {get;set;} = new();
 }
 
   public class Quote {
