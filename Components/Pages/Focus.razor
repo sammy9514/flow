@@ -1,6 +1,12 @@
-﻿
+﻿<div class="@(IsOpen ? "overlay": "")" />
 <div class="body">
-  <p class="currentTask">What task do you want to focus on ?</p>
+  <div class="hold" @onclick:stopPropagation>
+  <p class="currentTask" @onclick="ToggleModal" @sto>What task do you want to focus on ?</p>
+  @if(IsOpen) {
+  <CreateTask/>
+  }
+  </div>
+
     <div class="pomoMode">
       <div class="focus @(CurrentMode == Modes.Pomodoro ? "active" : "" )" @onclick="()=> SelectMode(Modes.Pomodoro)">Focus</div>
       <div class="shortBreak @(CurrentMode == Modes.ShortBreak ? "active" : "" )" @onclick="()=> SelectMode(Modes.ShortBreak)">Short Break</div>
@@ -13,6 +19,8 @@
     </div>
     <div class="sessionComp">Completed: @completedSession</div>
   </div>
+}
+
 
 
 
@@ -28,10 +36,12 @@
     private int completedSession = 0;
     private Modes CurrentMode = Modes.Pomodoro;
     private bool IsRunning = false;
+    private bool IsOpen = false;
+    private Timer? _timer;
     protected override void OnInitialized()
     {
         timerRemaining = pomoTimer *60;
-      var timer = new Timer(_ => {
+       _timer = new Timer(_ => {
         if(IsRunning) {
           timerRemaining--;
           
@@ -42,6 +52,10 @@
 
         InvokeAsync(StateHasChanged);
       }, null ,0 ,1000 );
+    }
+
+    public void Dispose() {
+      _timer?.Dispose();
     }
 
     public string GetFormatedTime() {
@@ -101,6 +115,14 @@
         timerRemaining = longBreak *60;
       }
     }
+
+    public void ToggleModal() {
+      IsOpen = !IsOpen;
+    }
+    public void CloseAll() {
+      IsOpen = false;
+    }
+
   public enum Modes {
     Pomodoro,
     ShortBreak,

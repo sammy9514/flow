@@ -86,5 +86,6 @@
 /Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/Flow.sourcelink.json
 /Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/compressed/yoxa24jm5c-{0}-aslq1y166x-aslq1y166x.gz
 /Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/scopedcss/Components/Pages/Focus.razor.rz.scp.css
-/Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/compressed/61jssh0wem-{0}-y3dr6usdpe-y3dr6usdpe.gz
-/Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/compressed/x3yr8xf81s-{0}-y3dr6usdpe-y3dr6usdpe.gz
+/Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/scopedcss/Components/Pages/CreateTask.razor.rz.scp.css
+/Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/compressed/61jssh0wem-{0}-qpz0qdfioq-qpz0qdfioq.gz
+/Users/macbookpro/Documents/set08/c#/Flow/Flow/obj/Debug/net10.0/compressed/x3yr8xf81s-{0}-qpz0qdfioq-qpz0qdfioq.gz

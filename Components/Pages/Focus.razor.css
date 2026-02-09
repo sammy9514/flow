@@ -5,7 +5,18 @@
   align-items: center;
   flex-direction: column;
 }
-
+.overlay {
+  flex: 1;
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.25s ease-out;
+  z-index: 1000;
+}
 .currentTask {
   font-size: 40px;
   font-weight: 500;
@@ -38,6 +49,10 @@
 
 .active {
   background-color: #9d3bff;
+}
+.hold {
+  position: relative;
+  z-index: 1000;
 }
 
 .displayPomo {

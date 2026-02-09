@@ -1,14 +1,57 @@
-﻿<h3>Task</h3>
-<body>
-  <div class="taskHold">
-    <div class="task"></div>
-  </div>
-</body>
+﻿<div class="task-card">
+    <h2>What are you prioritizing today?</h2>
+
+    <div class="task-list">
+        @foreach (var item in tasks)
+        {
+            <div class="task-row">
+                <input type="checkbox" @bind="item.isCompleted" />
+
+                <span class="task-text @(item.isCompleted ? "completed" : "")">
+                    @item.task
+                </span>
+
+                <button class="delete-btn" @onclick="() => RemoveTask(item.Id)">
+                    ✕
+                </button>
+            </div>
+        }
+    </div>
+
+    <div class="task-input">
+        <input placeholder="Type your priority" @bind="text" />
+        <button @onclick="AddTask">Add</button>
+    </div>
+</div>
+
 @code {
+    public List<TaskProp> tasks = new();
+    public string text = "";
+    private int nextId = 1;
 
-  public class TaskProp {
-    public int Id {get;set;} 
-    public string task {get; set;} = "";
-  }
+    private void AddTask()
+    {
+        if (string.IsNullOrWhiteSpace(text)) return;
 
+        tasks.Add(new TaskProp
+        {
+            Id = nextId++,
+            task = text
+        });
+
+        text = "";
+    }
+
+    private void RemoveTask(int id)
+    {
+        var task = tasks.FirstOrDefault(t => t.Id == id);
+        if (task != null) tasks.Remove(task);
+    }
+
+    public class TaskProp
+    {
+        public int Id { get; set; }
+        public string task { get; set; } = "";
+        public bool isCompleted { get; set; }
+    }
 }

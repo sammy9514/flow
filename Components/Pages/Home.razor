@@ -28,6 +28,7 @@
 
   else {
     <Focus/>
+    
   }
 
 
@@ -60,9 +61,12 @@
         <div style="display: @(ShowSettingsModal ? "block" : "none")" >
       </div>
     </div>
+
   </div>
+
 </footer>
 </div>
+
 
 @code  {
     public string? CurrentTime {get; set;} = DateTime.Now.ToString("hh:mm:ss");
@@ -94,7 +98,7 @@
 
   private bool ShowMusicModal = false;
   private bool ShowNotesModal = false;
-  private bool ShowSettingsModal = false;
+  private bool ShowSettingsModal = true;
   
   private void ToggleMusicModal() {
     ShowMusicModal = !ShowMusicModal;
