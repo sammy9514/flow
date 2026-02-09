@@ -1,7 +1,109 @@
 ﻿
+<div class="body">
+  <p class="currentTask">What task do you want to focus on ?</p>
+    <div class="pomoMode">
+      <div class="focus @(CurrentMode == Modes.Pomodoro ? "active" : "" )" @onclick="()=> SelectMode(Modes.Pomodoro)">Focus</div>
+      <div class="shortBreak @(CurrentMode == Modes.ShortBreak ? "active" : "" )" @onclick="()=> SelectMode(Modes.ShortBreak)">Short Break</div>
+      <div class="longBreak @(CurrentMode == Modes.LongBreak ? "active" : "" )" @onclick="()=> SelectMode(Modes.LongBreak)">Long Break</div>
+    </div>
+    <div class="displayPomo">@GetFormatedTime()</div>
+    <div class="btnHold">
+      <div class="startTime focus" @onclick="@Start">@(IsRunning ? "Pause" : "Start") </div>
+      <div class="startTime focus" @onclick="@Reset">Reset</div>
+    </div>
+    <div class="sessionComp">Completed: @completedSession</div>
+  </div>
 
-<h3>Focus</h3>
 
-@code {
 
+@code  {
+    [Parameter]
+    public int pomoTimer {get; set;} = 25;
+    [Parameter]
+    public int shortBreak {get; set;} =5;
+    [Parameter]
+    public int longBreak {get; set;} = 10;
+
+    private int timerRemaining;
+    private int completedSession = 0;
+    private Modes CurrentMode = Modes.Pomodoro;
+    private bool IsRunning = false;
+    protected override void OnInitialized()
+    {
+        timerRemaining = pomoTimer *60;
+      var timer = new Timer(_ => {
+        if(IsRunning) {
+          timerRemaining--;
+          
+          if(timerRemaining <= 0) {
+            SwitchMode();
+          }
+        }
+
+        InvokeAsync(StateHasChanged);
+      }, null ,0 ,1000 );
+    }
+
+    public string GetFormatedTime() {
+      int minute = timerRemaining /60;
+      int sec = timerRemaining % 60;
+
+      return minute.ToString("00")+ ":" +  sec.ToString("00");
+    }
+
+    public void SwitchMode() {
+      if(CurrentMode == Modes.Pomodoro) {
+        completedSession++;
+        if(completedSession %4 ==0) {
+        CurrentMode = Modes.LongBreak;
+        timerRemaining = longBreak *60;
+
+        }else {
+        CurrentMode = Modes.ShortBreak;
+        timerRemaining = shortBreak *60;
+        }
+      }else if (CurrentMode == Modes.ShortBreak) {
+        CurrentMode = Modes.Pomodoro;
+        timerRemaining = pomoTimer *60;
+      }
+      else if (CurrentMode == Modes.LongBreak) {
+        CurrentMode = Modes.Pomodoro;
+        timerRemaining = pomoTimer *60;
+      }
+    }
+
+    public void Start() {
+      IsRunning = !IsRunning;
+    }
+
+    public void Reset() {
+      IsRunning = false;
+      if(CurrentMode == Modes.Pomodoro) {
+        timerRemaining = pomoTimer *60;
+      }else if(CurrentMode == Modes.ShortBreak) {
+        timerRemaining = shortBreak*60;
+      }
+      else if(CurrentMode == Modes.LongBreak) {
+        timerRemaining = longBreak*60;
+      }
+    }
+
+    public void SelectMode(Modes mode) {
+      IsRunning = false;
+      CurrentMode = mode;
+      if(CurrentMode == Modes.Pomodoro) {
+        timerRemaining = pomoTimer *60;
+      }
+      else if(CurrentMode == Modes.ShortBreak) {
+        timerRemaining = shortBreak *60;
+      }
+      else if(CurrentMode == Modes.LongBreak) {
+        timerRemaining = longBreak *60;
+      }
+    }
+  public enum Modes {
+    Pomodoro,
+    ShortBreak,
+    LongBreak
+  }
 }

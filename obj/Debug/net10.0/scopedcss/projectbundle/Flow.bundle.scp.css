@@ -158,6 +158,52 @@
         opacity: 0;
     }
 }
+/* /Components/Pages/Focus.razor.rz.scp.css */
+.body[b-2gp21fuuk7] {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.currentTask[b-2gp21fuuk7] {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.pomoMode[b-2gp21fuuk7] {
+  display: flex;
+  gap: 20px;
+}
+
+.focus[b-2gp21fuuk7],
+.shortBreak[b-2gp21fuuk7],
+.longBreak[b-2gp21fuuk7] {
+  padding: 10px 30px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 20px;
+  cursor: pointer;
+  transition:
+    background-color,
+    ease-in-out 0.5s;
+}
+
+.focus:hover[b-2gp21fuuk7],
+.shortBreak:hover[b-2gp21fuuk7],
+.longBreak:hover[b-2gp21fuuk7] {
+  background-color: #9d3bff;
+}
+
+.active[b-2gp21fuuk7] {
+  background-color: #9d3bff;
+}
+
+.displayPomo[b-2gp21fuuk7] {
+  font-size: 170px;
+}
 /* /Components/Pages/Home.razor.rz.scp.css */
 .homeContainer[b-k64tahcf36] {
   width: 100%;
