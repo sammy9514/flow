@@ -1,7 +1,9 @@
-﻿<div class="@(IsOpen ? "overlay": "")" />
+﻿@inject Service.AppState State
+
+<div class="@(IsOpen ? "overlay": "")" @onclick="CloseAll"/>
 <div class="body">
   <div class="hold" @onclick:stopPropagation>
-  <p class="currentTask" @onclick="ToggleModal" @sto>What task do you want to focus on ?</p>
+  <p class="currentTask" @onclick="ToggleModal">@(State.CurrentTask ?? "What do you want to Focus on today?")</p>
   @if(IsOpen) {
   <CreateTask/>
   }
@@ -19,7 +21,6 @@
     </div>
     <div class="sessionComp">Completed: @completedSession</div>
   </div>
-}
 
 
 
@@ -50,12 +51,15 @@
           }
         }
 
+        @* State.OnChange += StateHasChanged; *@
+
         InvokeAsync(StateHasChanged);
       }, null ,0 ,1000 );
     }
 
     public void Dispose() {
       _timer?.Dispose();
+      @* State.OnChange -= StateHasChanged; *@
     }
 
     public string GetFormatedTime() {
@@ -116,12 +120,15 @@
       }
     }
 
+  //modal
     public void ToggleModal() {
       IsOpen = !IsOpen;
     }
     public void CloseAll() {
       IsOpen = false;
     }
+
+
 
   public enum Modes {
     Pomodoro,

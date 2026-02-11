@@ -1,13 +1,18 @@
-﻿<div class="task-card">
-    <h2>What are you prioritizing today?</h2>
+﻿@inject Service.AppState State
+ @inject IJSRuntime JS
+@using System.Text.Json
+@rendermode InteractiveServer
 
-    <div class="task-list">
+<div class="task-card">
+    <h2> What are you prioritizing today?</h2>
+
+    <div class="task-list" >
         @foreach (var item in tasks)
         {
             <div class="task-row">
                 <input type="checkbox" @bind="item.isCompleted" />
 
-                <span class="task-text @(item.isCompleted ? "completed" : "")">
+                <span class="task-text @(item.isCompleted ? "completed" : "")" @onclick="()=>CurrentTask(item.Id)">
                     @item.task
                 </span>
 
@@ -25,11 +30,38 @@
 </div>
 
 @code {
+    [Parameter]
+    public string? currentTask {get;set;} = null;
     public List<TaskProp> tasks = new();
     public string text = "";
     private int nextId = 1;
 
-    private void AddTask()
+    int count = 0;
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if(firstRender) {
+            await LoadTask();
+        }
+    }
+
+    private async Task LoadTask() {
+        try{
+            var json = await JS.InvokeAsync<string>("localStorage.getItem", "tasks");
+            if (!string.IsNullOrEmpty(json))
+            {
+                tasks = JsonSerializer.Deserialize<List<TaskProp>>(json) ?? new();
+                nextId = tasks.Any() ? tasks.Max(t => t.Id) + 1 : 1;
+                StateHasChanged();
+            }
+        }
+        catch{}
+    }
+
+    private async Task SaveTask() {
+        var json = JsonSerializer.Serialize(tasks);
+        await JS.InvokeVoidAsync("localStorage.setItem", "tasks",json);
+    }
+
+    private async Task AddTask()
     {
         if (string.IsNullOrWhiteSpace(text)) return;
 
@@ -40,12 +72,25 @@
         });
 
         text = "";
+        await SaveTask();
     }
 
-    private void RemoveTask(int id)
+    private async Task RemoveTask(int id)
     {
         var task = tasks.FirstOrDefault(t => t.Id == id);
         if (task != null) tasks.Remove(task);
+        await SaveTask();
+
+    }
+
+    private async Task CurrentTask(int id){
+        var selectedTask = tasks.FirstOrDefault(t => t.Id == id);
+        if(selectedTask != null) {
+            currentTask = selectedTask.task;
+
+            State.SetCurrentTask(currentTask);
+            await SaveTask();
+        }
     }
 
     public class TaskProp

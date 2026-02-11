@@ -1,4 +1,6 @@
 using Flow.Components;
+using Flow.Service;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +9,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddHttpClient();
+builder.Services.AddServerSideBlazor()
+    .AddCircuitOptions(options => { options.DetailedErrors = true; });
 
+builder.Services.AddScoped<AppState>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
